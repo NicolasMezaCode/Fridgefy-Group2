@@ -18,7 +18,7 @@ export const getRecipeDataViaKeyword = async (keyword, number) =>{
 }
 
 export const FetchRecipes = () => {
-    getRecipeDataViaKeyword('hamburger', 10);
+    // getRecipeDataViaKeyword('hamburger', 10);
     return (
         <>
             <div>backendTest</div>

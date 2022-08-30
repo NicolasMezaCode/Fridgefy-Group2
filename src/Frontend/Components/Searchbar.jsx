@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import {getRecipeDataViaKeyword} from '../../Backend/FetchRecipes';
 export default function Searchbar() {
     const [search,setSearch]=useState("");
     const [option,setOption]=useState("5")
@@ -7,11 +7,16 @@ export default function Searchbar() {
         setSearch(e.target.value)
     }
     const handleNumber=(e)=>{
-        setOption(e.target.value)
+        setOption(Number(e.target.value))
+    }
+    const searchHandler=(e)=>{
+        e.preventDefault()
+        console.log('submit')
+        getRecipeDataViaKeyword(search,option)
     }
   return (
     <>
-    <form>
+    <form onSubmit={searchHandler}>
       <input onChange={handleChange} type="text" />
       <select onChange={handleNumber} name="numbers" id="">
         <option value="5">5</option>
@@ -21,7 +26,7 @@ export default function Searchbar() {
         <option value="25">25</option>
         <option value="30">30</option>
       </select>
-      <button type='button'>Search</button>
+      <button>Search</button>
       <h2>{search+option}</h2>   
     </form>
     </>
