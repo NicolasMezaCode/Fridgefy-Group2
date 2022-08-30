@@ -1,11 +1,10 @@
 import './App.css';
-import { BackendTest } from './Backend/FetchAPI'
-import Main from './Frontend/Components/Main';
+import { BackendTest, FetchRecipes } from './Backend/FetchRecipes'
 
 function App() {
   return (
     <div className="App">
-      <Main/>
+      <FetchRecipes />
     </div>
   );
 }
