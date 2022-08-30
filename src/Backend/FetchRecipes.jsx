@@ -1,16 +1,16 @@
 //Search by ingredients
-//Cuisine
-//Diet
+//Cuisine: Drop down
+//Diet: Drop down
 //Changeable params
 
 import axios from "axios"
 import FetchIngredients from "./FetchIngredients";
 
-const getRecipeData = async () =>{
+export const getRecipeDataViaKeyword = async (keyword, number) =>{
     try{
-        const res = await axios.get(`${process.env.REACT_APP_SPOONACULAR_RECIPES_URL}?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=lasagna&cuisine=''&number=10`)
+        const res = await axios.get(`${process.env.REACT_APP_SPOONACULAR_RECIPES_URL}?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${keyword}&number=${number}`)
         const data = res.data;
-    
+
         console.log(data)
     }catch(e){
         console.log(e)
@@ -18,7 +18,7 @@ const getRecipeData = async () =>{
 }
 
 export const FetchRecipes = () => {
-    getRecipeData();
+    getRecipeDataViaKeyword('hamburger', 10);
     return (
         <>
             <div>backendTest</div>
