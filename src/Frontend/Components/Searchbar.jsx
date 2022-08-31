@@ -2,7 +2,7 @@ import React,{ useState,useRef,useEffect} from 'react'
 import {getRecipeDataViaKeyword} from '../../Backend/FetchRecipes';
 import { RecipeContext } from "./RecipeContext";
 import { useContext } from "react";
-import SingleRecipe from './SingleRecipe';
+import SingleRecipe from './Card';
 import axios from 'axios';
 
 export default function Searchbar() {

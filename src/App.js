@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path='/signup' element={<SignUp />}></Route>
             <Route path='/signin' element={<SignIn />}></Route>
-            <Route path='/' element={<FetchRecipes/>}></Route>
+            <Route path='/' element={<Main/>}></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
