@@ -13,8 +13,6 @@ export function RecipeProvider({children}){
       }).catch(err=>{
         console.log(err)
       })
-      
-      
   }
   return(
     <RecipeContext.Provider value={{
