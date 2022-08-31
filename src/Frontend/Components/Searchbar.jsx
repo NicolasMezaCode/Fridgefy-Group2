@@ -1,8 +1,15 @@
-import React,{useState} from 'react'
+import React,{ useState} from 'react'
 import {getRecipeDataViaKeyword} from '../../Backend/FetchRecipes';
+import { RecipeContext } from "./RecipeContext";
+import { useContext } from "react";
+import SingleRecipe from './SingleRecipe';
+
 export default function Searchbar() {
     const [search,setSearch]=useState("");
-    const [option,setOption]=useState("5")
+    const [option,setOption]=useState("5");
+    
+    const {recipes,addRecipe}=useContext(RecipeContext)
+
     const handleChange=(e)=>{
         setSearch(e.target.value)
     }
@@ -11,8 +18,7 @@ export default function Searchbar() {
     }
     const searchHandler=(e)=>{
         e.preventDefault()
-        console.log('submit')
-        getRecipeDataViaKeyword(search,option)
+        addRecipe(getRecipeDataViaKeyword(search,option))
     }
   return (
     <>
@@ -27,8 +33,8 @@ export default function Searchbar() {
         <option value="30">30</option>
       </select>
       <button>Search</button>
-      <h2>{search+option}</h2>   
     </form>
+    {recipes.map((recipe)=>(<SingleRecipe recipe={recipe} key={recipe.id} />))}
     </>
   )
 }
