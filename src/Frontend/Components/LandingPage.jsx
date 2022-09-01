@@ -3,6 +3,7 @@ import { auth } from '../../Backend/firebase_config'
 import { useLocation, Navigate } from 'react-router-dom'
 import { useAuthContext } from '../../AuthContext'
 import { recipeRef, ingredientsRef, recipeQuerySnapShot } from '../../Backend/FirebaseUtils'
+import Main from "./Main"
 
 export const LandingPage = () => {
     const history = useLocation();
@@ -21,6 +22,7 @@ export const LandingPage = () => {
             <>
                 <h2>Welcome !!{user.displayName === null && 'User'}</h2>
                 <button onClick={handleSignOut}>Sign Out</button>
+                <Main/>
             </>
         )
     }

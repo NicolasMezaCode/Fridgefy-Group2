@@ -1,12 +1,19 @@
 import React from 'react'
 import { RecipeContext } from "./RecipeContext";
 import { useContext } from "react";
+import { dataBaseService } from '../../Backend/FirebaseUtils';
 
 export default function SingleRecipe(recipe) {
-  const {myRecipes,addMyRecipes}=useContext(RecipeContext)
-
+  const {getMyRecipes}=useContext(RecipeContext)
   const handleAdd=()=>{
-    addMyRecipes(recipe.recipe)
+    const myrecipes={
+      id:recipe.recipe.id,
+      image:recipe.recipe.image,
+      imageType:recipe.recipe.imageType,
+      title:recipe.recipe.title
+    };
+    dataBaseService.add(myrecipes)
+    getMyRecipes()
   }
   return (
     <div>

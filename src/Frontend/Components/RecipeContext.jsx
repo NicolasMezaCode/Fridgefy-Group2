@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react"
 import MyRecipes from "./MyRecipes";
+import { dataBaseService } from '../../Backend/FirebaseUtils';
 
 export const RecipeContext=createContext();
 
@@ -17,15 +18,16 @@ export function RecipeProvider({children}){
       })
   }
 
-  const addMyRecipes=(data)=>{
-    setMyRecipes(myRecipes.push(data))
+  const getMyRecipes=()=>{
+      dataBaseService.get().then((QuerySnapshot) =>{
+        setMyRecipes(QuerySnapshot.docs.map((doc) =>(doc.data())))
+    })
     console.log(myRecipes)
-    
   }
 
   return(
     <RecipeContext.Provider value={{
-      recipes:recipes,addRecipe,myRecipes:myRecipes,addMyRecipes
+      recipes:recipes,addRecipe,myRecipes:myRecipes,getMyRecipes
     }}>
         {children}
     </RecipeContext.Provider>
