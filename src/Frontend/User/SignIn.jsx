@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
 import { auth } from '../../Backend/firebase_config';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const SignIn = () => {
     const emailInputRef = useRef();
@@ -18,6 +18,7 @@ const SignIn = () => {
     const loginWithGoogle = async (e) =>{
         e.preventDefault();
         await signInWithPopup(auth, googleProvider)
+        return <Navigate to='/'></Navigate>
     }
   return (
     <>
