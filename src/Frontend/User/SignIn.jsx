@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import { auth } from '../../firebaseConfig';
+import { auth } from '../../Backend/firebase_config';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
