@@ -20,9 +20,10 @@ export const LandingPage = () => {
     }else{
         return(
             <>
-                <h2>Welcome !!{user.displayName === null && 'User'}</h2>
+                <h2>Welcome !!{(user.displayName === null) ? 'User': (user.displayName)}</h2>
                 <button onClick={handleSignOut}>Sign Out</button>
                 <Main/>
+
             </>
         )
     }
