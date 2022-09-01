@@ -27,6 +27,7 @@ export const dataBaseService = {
     },
     get: async () =>{
         const res = await getDocs(recipeRef);
-        console.log(res);
+        console.log('getting',res);
+        return res;
     }
 }
