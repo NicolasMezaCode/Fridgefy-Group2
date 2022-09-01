@@ -7,6 +7,7 @@ import SignIn from './Frontend/User/SignIn';
 import Main from './Frontend/Components/Main';
 import { FetchRecipes } from './Backend/FetchRecipes';
 import { LandingPage } from './Frontend/Components/LandingPage'
+import ProtectRoute from './Frontend/User/ProtectRoute';
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
           <Link to='/shoppinglist'>My Shopping List</Link>
         </nav>
           <Routes>
-            <Route path='/signup' element={<SignUp />}></Route>
-            <Route path='/signin' element={<SignIn />}></Route>
+            <Route path='/signup' element={<ProtectRoute><SignUp /></ProtectRoute>}></Route>
+            <Route path='/signin' element={<ProtectRoute><SignIn /></ProtectRoute>}></Route>
             <Route path='/' element={<LandingPage />}></Route>
           </Routes>
         </BrowserRouter>

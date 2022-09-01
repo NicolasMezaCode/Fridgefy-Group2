@@ -3,7 +3,7 @@ import { auth } from '../../Backend/firebase_config';
 import { createUserWithEmailAndPassword, signInWithPopup,
   GoogleAuthProvider, } from 'firebase/auth';
 import { useAuthContext } from '../../AuthContext';
-
+import { Navigate } from 'react-router-dom';
 const SignUp = () => {
 
     const { user } = useAuthContext()
@@ -18,6 +18,7 @@ const SignUp = () => {
         console.log('submit', enteredEmail, enteredPassword)
 
         createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword);
+        return <Navigate to='/'></Navigate>
     }
   return (
     <>
