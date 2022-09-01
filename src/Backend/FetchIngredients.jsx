@@ -13,7 +13,7 @@ export const getIngredientsData = async (keyword) =>{
 }
 
 const FetchIngredients = () => {
-    getIngredientsData();
+    // getIngredientsData();
   return (
     <div>FetchIngredients</div>
   )
