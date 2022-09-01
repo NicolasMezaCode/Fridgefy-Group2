@@ -1,14 +1,20 @@
 import React from 'react'
 import { RecipeContext } from "./RecipeContext";
 import { useContext,useEffect } from "react";
+import UserRecipe from './UserRecipe';
 export default function MyRecipes() {
-    const {myRecipes}=useContext(RecipeContext)
+    const {myRecipes,getMyRecipes}=useContext(RecipeContext)
+    // useEffect(()=>{
+    //   getMyRecipes()
+    // },[])
   return (
     <section>
         <div>
             <h3>My recipes</h3>
         </div>
-        {myRecipes.map((recipe)=><h3>{recipe.title}</h3>)}
+        <ul>
+          {myRecipes.map((recipe)=><UserRecipe id={recipe.id} name={recipe.title}/>)}
+        </ul>
     </section>
   )
 }
