@@ -4,6 +4,7 @@
 //Changeable params
 
 import axios from "axios"
+import MyFridge from "../Frontend/Components/MyFridge";
 import FetchIngredients from "./FetchIngredients";
 
 export const getRecipeDataViaKeyword = async (keyword, number) =>{
@@ -22,6 +23,7 @@ export const FetchRecipes = () => {
     return (
         <>
             <div>backendTest</div>
+            <MyFridge />
             <FetchIngredients />
         </>
     )

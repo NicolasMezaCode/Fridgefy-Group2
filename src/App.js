@@ -2,6 +2,7 @@ import './App.css';
 import AuthProvider from './AuthContext';
 // import { FetchRecipes } from './Backend/FetchRecipes'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import MyFridge from './Frontend/Components/MyFridge';
 import SignUp from './Frontend/User/SignUp';
 import SignIn from './Frontend/User/SignIn';
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <div className="App">
       {/* <FetchRecipes /> */}
+      <MyFridge />
       <AuthProvider>
         <BrowserRouter>
         <nav>

@@ -1,10 +1,35 @@
-function MyFridge() {
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { selectIngredient } from '../../actions';
+import './style.css';
+
+class IngredientsListItem extends Component {
+  handleIngredientSelect(oneIngredient) {
+    window.scrollTo(0, 0);
+    this.props.selectIngredient(oneIngredient);
+  }
+
+  render() {
+    const { oneIngredient } = this.props;
     return (
-        <div className="App">
-            <h1>Hello</h1>
-        </div>
+      <li
+        onClick={() => this.handleIngredientSelect(oneIngredient)}
+        className="IngredientsListItem-one-ingredient"
+      >
+        {oneIngredient}
+      </li>
     );
+  }
 }
 
-export default MyFridge;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      selectIngredient,
+    },
+    dispatch
+  );
+}
 
+export default connect(null, mapDispatchToProps)(IngredientsListItem);
