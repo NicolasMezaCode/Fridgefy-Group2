@@ -6,6 +6,7 @@ import SignUp from './Frontend/User/SignUp';
 import SignIn from './Frontend/User/SignIn';
 import Main from './Frontend/Components/Main';
 import { FetchRecipes } from './Backend/FetchRecipes';
+import { LandingPage } from './Frontend/Components/LandingPage'
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Routes>
             <Route path='/signup' element={<SignUp />}></Route>
             <Route path='/signin' element={<SignIn />}></Route>
-            <Route path='/' element={<Main/>}></Route>
+            <Route path='/' element={<LandingPage />}></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
