@@ -1,16 +1,23 @@
 import React, {useRef} from 'react'
 import { auth } from '../../firebaseConfig';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
 const SignIn = () => {
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
+    const googleProvider = new GoogleAuthProvider();
 
     const loginHandleSubmit = (e) =>{
         e.preventDefault();
-        const {email, password} = e.target.element;
-        signInWithEmailAndPassword(auth, email, password);
+        const enteredEmail = emailInputRef.current.value;
+        const enteredPassword = passwordInputRef.current.value;
+        signInWithEmailAndPassword(auth, enteredEmail, enteredPassword);
+    }
+
+    const loginWithGoogle = async (e) =>{
+        e.preventDefault();
+        await signInWithPopup(auth, googleProvider)
     }
   return (
     <>
@@ -26,7 +33,7 @@ const SignIn = () => {
           <button>Sign in!</button>
         </div>
       </form>
-      <button>
+      <button onClick={loginWithGoogle}>
         Sign in with Google
       </button>
       <div>
