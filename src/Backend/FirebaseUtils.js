@@ -44,7 +44,10 @@ export const dataBaseService = {
     },
     get: async () =>{
         const res = await getDocs(recipeRef);
-        console.log(res);
+
+        //console.log(res);
+        console.log('getting',res);
+        return res;
     },
     delete: async (id) =>{
         const docRef = doc(recipeRef, 'recipes', id);
