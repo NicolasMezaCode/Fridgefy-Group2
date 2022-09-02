@@ -1,9 +1,9 @@
 import React from 'react';
 import { dataBaseService } from '../../Backend/FirebaseUtils';
 
-export default function UserRecipe({id,name}) {
+export default function UserRecipe({name}) {
     const handleDelete=()=>{
-        dataBaseService.delete(id.toString())
+        dataBaseService.delete(name)
     }
 
   return (
