@@ -22,7 +22,7 @@ export default function SingleRecipe(recipe) {
   };
 
   const handleMore=()=>{
-    getRecipeSummary(recipe.recipe.id);
+    getRecipeSummary(recipe.recipe.title)
   }
 
 
