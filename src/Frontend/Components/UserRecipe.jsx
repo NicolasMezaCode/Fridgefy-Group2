@@ -3,7 +3,6 @@ import { dataBaseService } from '../../Backend/FirebaseUtils';
 
 export default function UserRecipe({id,name}) {
     const handleDelete=()=>{
-        console.log(id)
         dataBaseService.delete(toString(id))
     }
 

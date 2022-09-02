@@ -37,14 +37,13 @@ export const recipeQuerySnapShot = () =>{
 
 export const dataBaseService = {
     add: async (newRecipe) =>{
-        const {id, image, imageType, title} = newRecipe;
+        const {userId,id, image, imageType, title} = newRecipe;
         const res = await addDoc(recipeRef, newRecipe);
         console.log(res)
         return res
     },
     get: async () =>{
         const res = await getDocs(recipeRef);
-
         //console.log(res);
         console.log('getting',res);
         return res;
