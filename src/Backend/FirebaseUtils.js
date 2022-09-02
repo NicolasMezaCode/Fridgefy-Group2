@@ -52,10 +52,17 @@ export const dataBaseService = {
         const recipesFilteredByUserId = query(recipeRef, where('userId', '==', userId));
         return await getDocs(recipesFilteredByUserId);
     },
-    delete: async (id) =>{
-        const docRef = doc(dataBase, 'recipes', id);
-        console.log(id)
-        console.log('delete target' ,docRef);
-        await deleteDoc(docRef);
+    delete: async (name) =>{
+        const docRef = collection(dataBase, 'recipes');
+        const query = query(docRef, where('name', '==', name));
+        console.log(query);
+        const querySnapshot = await getDocs(query);
+        console.log(querySnapshot);
+        querySnapshot.forEach(async(document) =>{
+            const deleteTarget = doc(dataBase, 'recipes', document.id);
+            await deleteDoc(deleteTarget)
+        })
+        // console.log('delete target' ,docRef);
+        // await deleteDoc(docRef);
     }
 }
