@@ -37,7 +37,7 @@ export const recipeQuerySnapShot = () =>{
 
 export const dataBaseService = {
     add: async (newRecipe) =>{
-        const {id, image, imageType, title} = newRecipe;
+        const {userId,id, image, imageType, title} = newRecipe;
         const res = await addDoc(recipeRef, newRecipe);
         console.log(res)
         return res
@@ -49,13 +49,13 @@ export const dataBaseService = {
         if(!userId){
             return res;
         };
-
         const recipesFilteredByUserId = query(recipeRef, where('userId', '==', userId));
         return await getDocs(recipesFilteredByUserId);
     },
     delete: async (id) =>{
-        const docRef = doc(recipeRef, 'recipes', id);
-        console.log(docRef);
+        const docRef = doc(dataBase, 'recipes', id);
+        console.log(id)
+        console.log('delete target' ,docRef);
         await deleteDoc(docRef);
     }
 }
