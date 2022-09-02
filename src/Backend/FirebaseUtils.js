@@ -24,7 +24,6 @@ export const recipeQuerySnapShot = () =>{
 //         setRecipe(
 //             QuerySnapshot.doc.map((doc) => ({
 //                 ...doc.data(),
-//                 id: doc.id
 //             }))
 //         )
 //     })
@@ -51,6 +50,18 @@ export const dataBaseService = {
         };
         const recipesFilteredByUserId = query(recipeRef, where('userId', '==', userId));
         return await getDocs(recipesFilteredByUserId);
+    },
+    getRealTieData: async () =>{
+        // const onTimeUpdate = (ref) =>{
+        //         const updatedData = onSnapshot(ref, (QuerySnapshot)=>{
+        //             setRecipe(
+        //                 QuerySnapshot.doc.map((doc) => ({
+        //                     ...doc.data(),
+        //                 }))
+        //             )
+        //         })
+        //         return updatedData;
+        // }
     },
     delete: async (name) =>{
         const docRef = collection(dataBase, 'recipes');
