@@ -42,11 +42,16 @@ export const dataBaseService = {
         console.log(res)
         return res
     },
-    get: async () =>{
+    get: async (userId) =>{
+        console.log('userId', userId);
         const res = await getDocs(recipeRef);
-        //console.log(res);
         console.log('getting',res);
-        return res;
+        if(!userId){
+            return res;
+        };
+
+        const recipesFilteredByUserId = query(recipeRef, where('userId', '==', userId));
+        return await getDocs(recipesFilteredByUserId);
     },
     delete: async (id) =>{
         const docRef = doc(recipeRef, 'recipes', id);

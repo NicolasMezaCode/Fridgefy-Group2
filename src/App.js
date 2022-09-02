@@ -8,6 +8,7 @@ import Main from './Frontend/Components/Main';
 import { FetchRecipes } from './Backend/FetchRecipes';
 import { LandingPage } from './Frontend/Components/LandingPage'
 import ProtectRoute from './Frontend/User/ProtectRoute';
+import { useAuthContext } from './AuthContext.jsx'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
         <nav>
-          <Link to='/'>Home</Link>
+          <Link to='/'>Fridgefy</Link>
           <Link to='/signup'>Sign up</Link>
           <Link to='/signin'>Sign in</Link>
           <Link to='/recipes'>My recipes</Link>
