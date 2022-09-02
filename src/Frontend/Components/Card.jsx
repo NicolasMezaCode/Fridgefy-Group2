@@ -3,7 +3,7 @@ import { RecipeContext } from "./RecipeContext";
 import { useContext } from "react";
 import { dataBaseService } from '../../Backend/FirebaseUtils';
 import{ useAuthContext } from '../../AuthContext'
-
+import { getRecipeSummary } from '../../Backend/FetchRecipes';
 
 export default function SingleRecipe(recipe) {
   const {getMyRecipes}=useContext(RecipeContext);
@@ -22,7 +22,7 @@ export default function SingleRecipe(recipe) {
   };
 
   const handleMore=()=>{
-    
+    getRecipeSummary(recipe.recipe.id);
   }
 
 
