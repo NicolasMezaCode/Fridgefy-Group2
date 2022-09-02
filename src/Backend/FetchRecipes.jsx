@@ -15,9 +15,9 @@ export const getRecipeDataViaKeyword = async (keyword, cuisine, diet, intoleranc
 
 export const getRecipeSummary = async (name) =>{
     try{
-        const res = await axios.get(`${process.env.REACT_APP_SPOONACULAR_SUMMARY_URL}?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${name}&addRecipeInformation=true`);
-        // console.log(res);
+        const res = await axios.get(`${process.env.REACT_APP_SPOONACULAR_RECIPES_URL}?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${name}&addRecipeInformation=true`);
         const summary = await res;
+        console.log(name)
         console.log(summary);
         return summary
     }catch(e){
