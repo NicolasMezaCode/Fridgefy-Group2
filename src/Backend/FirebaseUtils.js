@@ -51,7 +51,7 @@ export const dataBaseService = {
     },
     delete: async (id) =>{
         const docRef = doc(recipeRef, 'recipes', id);
-        console.log(docRef);
+        console.log('delete target' ,docRef);
         await deleteDoc(docRef);
     }
 }
