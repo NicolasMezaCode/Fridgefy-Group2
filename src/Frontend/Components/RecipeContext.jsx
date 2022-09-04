@@ -8,6 +8,7 @@ export const RecipeContext=createContext();
 export function RecipeProvider({children}){
   const [recipes,setRecipe]=useState([])
   const[myRecipes,setMyRecipes]=useState([])
+  const [recipeModal,setRecipeModal]=useState([])
 
   const addRecipe=(data)=>{
       const recipes=Promise.resolve(data)
@@ -26,10 +27,19 @@ export function RecipeProvider({children}){
     console.log(myRecipes)
   }
 
+  const addModal=(summary)=>{
+    const sum=Promise.resolve(summary)
+      sum.then(value=>{
+        setRecipeModal(value)
+      }).catch(err=>{
+        console.log(err)
+      })
+  }
+
   const onTimeUpdate = (ref) =>{
     const updatedData = onSnapshot(ref, (QuerySnapshot)=>{
-        setRecipe(
-            QuerySnapshot.doc.map((doc) => ({
+        setMyRecipes(
+            QuerySnapshot.docs.map((doc) => ({
                 ...doc.data(),
             }))
         )
@@ -39,7 +49,7 @@ export function RecipeProvider({children}){
 
   return(
     <RecipeContext.Provider value={{
-      recipes:recipes,addRecipe,myRecipes:myRecipes,getMyRecipes, onTimeUpdate
+      recipes:recipes,addRecipe,myRecipes:myRecipes,getMyRecipes, onTimeUpdate,addModal,recipeModal
     }}>
         {children}
     </RecipeContext.Provider>
