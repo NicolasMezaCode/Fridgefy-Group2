@@ -1,8 +1,5 @@
-import { collection, getDocs, getFirestore, query, QuerySnapshot, doc, getDoc, onSnapshot, addDoc, setDoc, Timestamp, serverTimestamp, deleteDoc, where, updateDoc } from "firebase/firestore";
-
-import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { collection, getDocs, query, doc, addDoc, deleteDoc, where } from "firebase/firestore";
 import { dataBase, storage } from './firebase_config'
-import {useState, useEffect } from "react"
 
 //Check ref
 export const recipeRef = collection(dataBase, 'recipes')
@@ -19,7 +16,6 @@ export const recipeQuerySnapShot = () =>{
 
 export const dataBaseService = {
     add: async (newRecipe) =>{
-        const {userId,id, image, imageType, title} = newRecipe;
         const res = await addDoc(recipeRef, newRecipe);
         console.log(res)
         return res
@@ -35,16 +31,40 @@ export const dataBaseService = {
         return await getDocs(recipesFilteredByUserId);
     },
     delete: async (name) =>{
-        console.log(name)
         const docRef = collection(dataBase, 'recipes');
         const deleteQuery = query(docRef, where('title', '==', name));
-        console.log(deleteQuery);
         const querySnapshot = await getDocs(deleteQuery);
-        console.log(querySnapshot);
         querySnapshot.forEach(async(document) =>{
             const deleteTarget = doc(dataBase, 'recipes', document.id);
             console.log('Target', document)
             await deleteDoc(deleteTarget)
         })
+    },
+    addIngredient: async (newIngredient) =>{
+        const res = await addDoc(ingredientsRef, newIngredient);
+        console.log(res);
+        return res;
+    },
+    deleteIngredient: async (ingredientName) =>{
+        console.log(ingredientName);
+        const docRef = collection(dataBase, 'ingredients');
+        const deleteQuery = query(docRef, where('name', '==', ingredientName));
+        const querySnapshot = await getDocs(deleteQuery);
+        querySnapshot.forEach(async(document) =>{
+            const deleteTarget = doc(dataBase, 'ingredients', document.id)
+            console.log('Target', document)
+            await deleteDoc(deleteTarget)
+        })
+
+    },
+    getIngredient: async (userId) =>{
+        console.log('userId', userId);
+        const res = await getDocs(ingredientsRef);
+        console.log('getting',res);
+        if(!userId){
+            return res;
+        };
+        const ingredientsFilteredByUserId = query(ingredientsRef, where('userId', '==', userId));
+        return await getDocs(ingredientsFilteredByUserId);
     }
 }

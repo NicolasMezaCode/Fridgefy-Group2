@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { useAuthContext } from '../../AuthContext'
 import { recipeRef, ingredientsRef, recipeQuerySnapShot } from '../../Backend/FirebaseUtils'
 import Main from "./Main"
+import { MyFridge } from './MyFridge'
 
 export const LandingPage = () => {
     const { user } = useAuthContext();
@@ -22,7 +23,6 @@ export const LandingPage = () => {
                 <h2>Welcome !! {(user.displayName === null) ? 'User': (user.displayName)}</h2>
                 <button onClick={handleSignOut}>Sign Out</button>
                 <Main/>
-
             </>
         )
     }

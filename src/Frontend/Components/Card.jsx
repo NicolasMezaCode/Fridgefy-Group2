@@ -10,7 +10,7 @@ export default function SingleRecipe(recipe) {
   const {user}=useAuthContext();
 
   const handleAdd=()=>{
-    const myrecipes={
+    const myrecipes = {
       userId:user.uid,
       id:recipe.recipe.id,
       image:recipe.recipe.image,

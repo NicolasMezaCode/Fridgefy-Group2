@@ -4,9 +4,10 @@ import { useContext,useEffect } from "react";
 import UserRecipe from './UserRecipe';
 export default function MyRecipes() {
     const {myRecipes,getMyRecipes}=useContext(RecipeContext)
-    useEffect(()=>{
+    useEffect(() => {
       getMyRecipes()
     },[])
+    
   return (
     <section>
         <div>
