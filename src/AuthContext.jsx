@@ -21,7 +21,7 @@ const AuthProvider = ({children}) => {
             console.log(user.uid)
             setUser(user)
             setLoading(false)
-            alert(`Welcome ${user}`)
+            // alert(`Welcome, {(user.displayName === null)? '':${user.displayName}}`)
         });
         return () => {
             unsubscribed()
