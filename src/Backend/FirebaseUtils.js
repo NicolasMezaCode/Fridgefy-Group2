@@ -17,23 +17,6 @@ export const recipeQuerySnapShot = () =>{
     })
 }
 
-//Get the data every time, the database updates
-// const [recipe, setRecipe] = useState([])
-// const onTimeUpdate = (ref) =>{
-//     const updatedData = onSnapshot(ref, (QuerySnapshot)=>{
-//         setRecipe(
-//             QuerySnapshot.doc.map((doc) => ({
-//                 ...doc.data(),
-//             }))
-//         )
-//     })
-//     return updatedData;
-// }
-
-// useEffect(() =>{
-//     onTimeUpdate(ref)
-// }, [])
-
 export const dataBaseService = {
     add: async (newRecipe) =>{
         const {userId,id, image, imageType, title} = newRecipe;
@@ -51,18 +34,6 @@ export const dataBaseService = {
         const recipesFilteredByUserId = query(recipeRef, where('userId', '==', userId));
         return await getDocs(recipesFilteredByUserId);
     },
-    getRealTieData: async () =>{
-        // const onTimeUpdate = (ref) =>{
-        //         const updatedData = onSnapshot(ref, (QuerySnapshot)=>{
-        //             setRecipe(
-        //                 QuerySnapshot.doc.map((doc) => ({
-        //                     ...doc.data(),
-        //                 }))
-        //             )
-        //         })
-        //         return updatedData;
-        // }
-    },
     delete: async (name) =>{
         console.log(name)
         const docRef = collection(dataBase, 'recipes');
@@ -75,7 +46,5 @@ export const dataBaseService = {
             console.log('Target', document)
             await deleteDoc(deleteTarget)
         })
-        // console.log('delete target' ,docRef);
-        // await deleteDoc(docRef);
     }
 }
