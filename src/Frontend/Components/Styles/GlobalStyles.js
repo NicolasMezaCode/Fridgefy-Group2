@@ -11,25 +11,10 @@ html{
 } 
 body{
     font-family: 'Poppins', sans-serif;
+    font-size: 16px;
   
 }
 
-.navbar {
-    padding: 20px 10px 10px 30px;
-    display: flex;
-    margin-bottom: 30px;
-    background-color: #F7F7F7;
-    color: black;
-    font-size: 27px;
-}
 
-.fri {
-    font-family: 'Abril Fatface', cursive;
-    padding-right: 50px;
-}
-
-.signup {
-    padding-left: 30px;
-}
 
 `;
