@@ -26,8 +26,7 @@ export const getRecipeSummary = async (id) =>{
 
 
 export const FetchRecipes = () => {
-    // getRecipeDataViaKeyword('', '', 'Ovo-Vegetarian', '', 20);
-    // getRecipeSummary(716426)
+
     return (
         <>
             <div>backendTest</div>

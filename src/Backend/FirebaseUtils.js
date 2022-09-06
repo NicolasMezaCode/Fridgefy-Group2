@@ -1,8 +1,5 @@
-import { collection, getDocs, getFirestore, query, QuerySnapshot, doc, getDoc, onSnapshot, addDoc, setDoc, Timestamp, serverTimestamp, deleteDoc, where, updateDoc } from "firebase/firestore";
-
-import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { dataBase, storage } from './firebase_config'
-import {useState, useEffect } from "react"
+import { collection, getDocs, query, doc, addDoc, deleteDoc, where } from "firebase/firestore";
+import { dataBase } from './firebase_config'
 
 //Check ref
 export const recipeRef = collection(dataBase, 'recipes')
@@ -17,26 +14,8 @@ export const recipeQuerySnapShot = () =>{
     })
 }
 
-//Get the data every time, the database updates
-// const [recipe, setRecipe] = useState([])
-// const onTimeUpdate = (ref) =>{
-//     const updatedData = onSnapshot(ref, (QuerySnapshot)=>{
-//         setRecipe(
-//             QuerySnapshot.doc.map((doc) => ({
-//                 ...doc.data(),
-//             }))
-//         )
-//     })
-//     return updatedData;
-// }
-
-// useEffect(() =>{
-//     onTimeUpdate(ref)
-// }, [])
-
 export const dataBaseService = {
     add: async (newRecipe) =>{
-        const {userId,id, image, imageType, title} = newRecipe;
         const res = await addDoc(recipeRef, newRecipe);
         console.log(res)
         return res
@@ -51,31 +30,41 @@ export const dataBaseService = {
         const recipesFilteredByUserId = query(recipeRef, where('userId', '==', userId));
         return await getDocs(recipesFilteredByUserId);
     },
-    getRealTieData: async () =>{
-        // const onTimeUpdate = (ref) =>{
-        //         const updatedData = onSnapshot(ref, (QuerySnapshot)=>{
-        //             setRecipe(
-        //                 QuerySnapshot.doc.map((doc) => ({
-        //                     ...doc.data(),
-        //                 }))
-        //             )
-        //         })
-        //         return updatedData;
-        // }
-    },
     delete: async (name) =>{
-        console.log(name)
         const docRef = collection(dataBase, 'recipes');
         const deleteQuery = query(docRef, where('title', '==', name));
-        console.log(deleteQuery);
         const querySnapshot = await getDocs(deleteQuery);
-        console.log(querySnapshot);
         querySnapshot.forEach(async(document) =>{
             const deleteTarget = doc(dataBase, 'recipes', document.id);
             console.log('Target', document)
             await deleteDoc(deleteTarget)
         })
-        // console.log('delete target' ,docRef);
-        // await deleteDoc(docRef);
+    },
+    addIngredient: async (newIngredient) =>{
+        const res = await addDoc(ingredientsRef, newIngredient);
+        console.log(res);
+        return res;
+    },
+    deleteIngredient: async (ingredientName) =>{
+        console.log(ingredientName);
+        const docRef = collection(dataBase, 'ingredients');
+        const deleteQuery = query(docRef, where('name', '==', ingredientName));
+        const querySnapshot = await getDocs(deleteQuery);
+        querySnapshot.forEach(async(document) =>{
+            const deleteTarget = doc(dataBase, 'ingredients', document.id)
+            console.log('Target', document)
+            await deleteDoc(deleteTarget)
+        })
+
+    },
+    getIngredient: async (userId) =>{
+        console.log('userId', userId);
+        const res = await getDocs(ingredientsRef);
+        console.log('getting',res);
+        if(!userId){
+            return res;
+        };
+        const ingredientsFilteredByUserId = query(ingredientsRef, where('userId', '==', userId));
+        return await getDocs(ingredientsFilteredByUserId);
     }
 }
