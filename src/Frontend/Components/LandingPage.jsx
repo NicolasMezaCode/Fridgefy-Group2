@@ -18,7 +18,7 @@ export const LandingPage = () => {
         return(
 
             <div className='welcome'>
-                <h2>Welcome !! {(user.displayName === null) ? 'User': (user.displayName)}</h2>
+                <p>Welcome !! {(user.displayName === null) ? 'User': (user.displayName)}</p>
                 <button onClick={handleSignOut}>Sign Out</button>
                 <Main/>
             </div>

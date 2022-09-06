@@ -47,9 +47,13 @@ export default function Searchbar() {
     <StyledSearch>
 
     <form onSubmit={searchHandler}>
+    <div className='search'>
+
       
       <input ref={searchInput} type="text" />
       <button>Search</button>
+      </div>
+
 
       <div>
       <select onChange={handleNumber} name="numbers" id="">

@@ -16,8 +16,9 @@ export const Navbar = () =>{
         <nav>
           <Link to="/" className="Logo">Fridgefy</Link>
           <div className="options">
-          <Link to="/recipes">My recipes</Link>
-          <Link to="/shoppinglist">My Shopping List</Link>
+            
+          <Link to="/recipes" className="myrecipies">My recipes</Link>
+          <Link to="/shoppinglist" className="myshoppinglist">My Shopping List</Link>
           </div>
           {(!userLoggedIn) ? (
             <div className="signin">
