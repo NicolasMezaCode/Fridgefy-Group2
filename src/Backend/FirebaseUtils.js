@@ -1,5 +1,5 @@
 import { collection, getDocs, query, doc, addDoc, deleteDoc, where } from "firebase/firestore";
-import { dataBase, storage } from './firebase_config'
+import { dataBase } from './firebase_config'
 
 //Check ref
 export const recipeRef = collection(dataBase, 'recipes')

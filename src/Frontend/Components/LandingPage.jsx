@@ -2,18 +2,14 @@ import React from 'react'
 import { auth } from '../../Backend/firebase_config'
 import { Navigate } from 'react-router-dom'
 import { useAuthContext } from '../../AuthContext'
-import { recipeRef, ingredientsRef, recipeQuerySnapShot } from '../../Backend/FirebaseUtils'
 import Main from "./Main"
-import { MyFridge } from './MyFridge'
 
 export const LandingPage = () => {
-    const { user } = useAuthContext();
+    const { user, handleSignOut } = useAuthContext();
     console.log(user)
-    console.log(recipeRef)
-    recipeQuerySnapShot()
-    const handleSignOut = () =>{
-        auth.signOut();
-    };
+
+    const userLoggedIn = auth.currentUser;
+    console.log(userLoggedIn);
 
     if(!user){
         return <Navigate to='/signin'></Navigate>
