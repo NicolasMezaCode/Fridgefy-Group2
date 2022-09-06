@@ -29,14 +29,14 @@ export function RecipeProvider({children}){
   }
 
 
-  const addModal=(summary)=>{
-    const sum=Promise.resolve(summary)
-      sum.then(value=>{
-        setRecipeModal(value)
-      }).catch(err=>{
-        console.log(err)
-      })
-  }
+  // const addModal=(summary)=>{
+  //   const sum=Promise.resolve(summary)
+  //     sum.then(value=>{
+  //       setRecipeModal(value)
+  //     }).catch(err=>{
+  //       console.log(err)
+  //     })
+  // }
 
   const onTimeUpdate = (ref) =>{
     const updatedData = onSnapshot(ref, (QuerySnapshot)=>{

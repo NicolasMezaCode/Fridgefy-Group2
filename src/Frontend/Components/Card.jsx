@@ -8,7 +8,7 @@ import { StyledCard } from "./Styles/Card.styles";
 
 
 export default function SingleRecipe(recipe) {
-  const {getMyRecipes,addModal,recipeModal}=useContext(RecipeContext);
+  const {getMyRecipes,addModal}=useContext(RecipeContext);
   const {user}=useAuthContext();
 
   const handleAdd=()=>{
@@ -23,9 +23,9 @@ export default function SingleRecipe(recipe) {
     getMyRecipes()
   };
 
-  const handleMore=()=>{
-    addModal(getRecipeSummary(recipe.recipe.id))
-  }
+  // const handleMore=()=>{
+  //   addModal(getRecipeSummary(recipe.recipe.id))
+  // }
 
 
 
@@ -40,7 +40,7 @@ export default function SingleRecipe(recipe) {
       <div>
       <figure><img src={`${recipe.recipe.image}`} alt="" /></figure>
       <button type='button' onClick={handleAdd}>Add</button>
-      <button type='button' onClick={handleMore} >More</button>
+      <button type='button'  >More</button>
       </div>   
        </div>
 
