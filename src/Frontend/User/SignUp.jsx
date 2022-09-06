@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { auth } from '../../Backend/firebase_config';
-import { createUserWithEmailAndPassword, signInWithPopup,
-  GoogleAuthProvider, } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAuthContext } from '../../AuthContext';
 import { Navigate } from 'react-router-dom';
 const SignUp = () => {
 
-    const { user } = useAuthContext()
+    const { loginWithGoogle } = useAuthContext()
     const emailInputRef = useRef();
     const passwordInputRef = useRef()
 
@@ -20,6 +19,7 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword);
         return <Navigate to='/'></Navigate>
     }
+
   return (
     <>
     <h2>Sign up here</h2>
@@ -34,8 +34,8 @@ const SignUp = () => {
           <button>Sign up</button>
         </div>
     </form>
-      <button onClick={() => console.log('logged in with Google')}>
-        Sign in with Google
+      <button onClick={loginWithGoogle}>
+        Sign up with Google
       </button>
     </>
   )

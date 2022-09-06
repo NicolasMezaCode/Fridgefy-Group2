@@ -1,28 +1,25 @@
 import React, {useRef} from 'react'
 import { auth } from '../../Backend/firebase_config';
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { Link, Navigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../AuthContext';
 
 const SignIn = () => {
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
-    const googleProvider = new GoogleAuthProvider();
+    const { loginWithGoogle } = useAuthContext()
 
     const loginHandleSubmit = (e) =>{
         e.preventDefault();
         const enteredEmail = emailInputRef.current.value;
         const enteredPassword = passwordInputRef.current.value;
         signInWithEmailAndPassword(auth, enteredEmail, enteredPassword);
+        alert(`Successfully logged in`);
     }
 
-    const loginWithGoogle = async (e) =>{
-        e.preventDefault();
-        await signInWithPopup(auth, googleProvider)
-        return <Navigate to='/'></Navigate>
-    }
   return (
     <>
-    <h2>SignIn</h2>
+    <h2>Sign in</h2>
       <form onSubmit={loginHandleSubmit}>
         <div>
           <label htmlFor='emailInput'>Email</label>
