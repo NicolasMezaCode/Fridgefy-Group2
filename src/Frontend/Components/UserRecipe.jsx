@@ -1,7 +1,7 @@
 import React from 'react';
 import { dataBaseService } from '../../Backend/FirebaseUtils';
 import { RecipeContext } from "./RecipeContext";
-import { useContext,useEffect } from "react";
+import { useContext } from "react";
 import { recipeRef } from '../../Backend/FirebaseUtils';
 
 

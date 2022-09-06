@@ -4,13 +4,14 @@ import { useContext,useEffect } from "react";
 import UserRecipe from './UserRecipe';
 export default function MyRecipes() {
     const {myRecipes,getMyRecipes}=useContext(RecipeContext)
-    useEffect(()=>{
+    useEffect(() => {
       getMyRecipes()
     },[])
+    
   return (
     <section>
         <div>
-            <h3>My recipes</h3>
+            <h3>My Recipes</h3>
         </div>
         <ul>
           {myRecipes.map((recipe)=><UserRecipe  id={recipe.id} name={recipe.title}/>)}
